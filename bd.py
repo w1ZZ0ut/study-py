@@ -44,3 +44,18 @@ def get_release_date(name, second_name):
 
 print(get_release_date("Bogdan","Vor"))
 
+
+def delete_prisoner(name, second_name):
+    conn = sqlite3.connect('jaillist.db')
+    cursor = conn.cursor()
+
+    cursor.execute('''
+        DELETE FROM jaillist
+        WHERE name = ? AND second_name = ?
+    ''', (name, second_name))
+
+    conn.commit()
+    conn.close()
+
+
+delete_prisoner("Bogdan", "Vor")
